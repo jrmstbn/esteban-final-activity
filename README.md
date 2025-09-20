@@ -1,12 +1,28 @@
-# React + Vite
+# React Library App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A library web app built using React, Material UI, and the OpenLibrary API. This was created as a final activity for React training.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+git clone https://github.com/jrmstbn/esteban-final-activity.git
+cd esteban-final-activity
+npm install
+npm start
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔍 Search for books
+- 📈 View trending books
+- 📚 Browse books by subject
+- 📝 View book details
+
+---
+
+## 🛠 Technologies Used
+
+- React
+- Material UI
+- OpenLibrary API
+- Axios
+- React Router
