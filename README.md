@@ -9,6 +9,7 @@ git clone https://github.com/jrmstbn/esteban-final-activity.git
 cd esteban-final-activity
 npm install
 npm start
+```
 
 ## ✨ Features
 
