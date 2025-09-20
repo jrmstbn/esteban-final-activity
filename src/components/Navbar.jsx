@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
 import {
   AppBar,
@@ -24,19 +25,17 @@ import {
 } from "@mui/icons-material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
-export default function Navbar({ currentPage, onNavigate }) {
+export default function Navbar() {
   const { themeMode, handleThemeChange } = useContext(ThemeContext);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const navItems = [
-    { label: "Trending", page: "trending" },
-    { label: "Browse", page: "browse" },
-    { label: "Random", page: "random" },
-    { label: "About", page: "about" },
+    { label: "Trending", path: "/trending" },
+    { label: "Browse", path: "/browse" },
+    { label: "Random", path: "/random" },
+    { label: "About", path: "/about" },
   ];
 
   const drawer = (
@@ -52,8 +51,12 @@ export default function Navbar({ currentPage, onNavigate }) {
       <Box>
         <List>
           {navItems.map((item) => (
-            <ListItem key={item.page} disablePadding>
-              <ListItemButton onClick={() => onNavigate(item.page)}>
+            <ListItem key={item.path} disablePadding>
+              <ListItemButton
+                component={Link}
+                to={item.path}
+                onClick={handleDrawerToggle}
+              >
                 <ListItemText primary={item.label} />
               </ListItemButton>
             </ListItem>
@@ -79,7 +82,6 @@ export default function Navbar({ currentPage, onNavigate }) {
           </ToggleButtonGroup>
         </Box>
       </Box>
-
       <Box sx={{ textAlign: "center", p: 2 }}>
         <Typography variant="caption" color="text.secondary">
           Esteban, Jerome | React
@@ -93,22 +95,25 @@ export default function Navbar({ currentPage, onNavigate }) {
       <AppBar position="sticky" elevation={2}>
         <Toolbar>
           <MenuBookIcon sx={{ mr: 1 }} />
-          <Typography variant="h6" sx={{ fontWeight: "bold", flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
             BOOK SHELF
           </Typography>
 
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2, mr: 2 }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2, ml: 3 }}>
             {navItems.map((item) => (
               <Button
-                key={item.page}
+                key={item.path}
                 color="inherit"
-                onClick={() => onNavigate(item.page)}
+                component={Link}
+                to={item.path}
                 sx={{ textTransform: "none" }}
               >
                 {item.label}
               </Button>
             ))}
           </Box>
+
+          <Box sx={{ flexGrow: 1 }} />
 
           <ToggleButtonGroup
             value={themeMode}

@@ -1,19 +1,50 @@
-import { Card, CardContent, Skeleton } from "@mui/material";
+import { Card, CardContent, Skeleton, Box } from "@mui/material";
 
 export default function LoadingSkeleton() {
   return (
-    <Card elevation={3}>
+    <Card
+      elevation={4}
+      sx={{
+        width: 220,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Skeleton variant="rectangular" height={250} animation="wave" />
-      <CardContent>
-        <Skeleton variant="text" height={30} animation="wave" />
-        <Skeleton variant="text" width="60%" animation="wave" />
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Skeleton variant="text" height={24} animation="wave" sx={{ mb: 1 }} />
         <Skeleton
-          variant="rectangular"
-          height={20}
-          width={100}
+          variant="text"
+          width="60%"
+          height={16}
           animation="wave"
-          sx={{ mt: 1 }}
+          sx={{ mb: 0.5 }}
         />
+        <Skeleton
+          variant="text"
+          width="45%"
+          height={14}
+          animation="wave"
+          sx={{ mb: 1 }}
+        />
+        <Box
+          sx={{
+            mt: 1,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Skeleton
+            variant="rectangular"
+            width={80}
+            height={24}
+            animation="wave"
+            sx={{ borderRadius: 12 }}
+          />
+          <Skeleton variant="text" width={40} height={16} animation="wave" />
+        </Box>
       </CardContent>
     </Card>
   );

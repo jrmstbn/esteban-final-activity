@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./pages/About";
 import BrowseBooks from "./pages/BrowseBooks";
 import Navbar from "./components/Navbar";
@@ -8,31 +8,24 @@ import TrendingBooks from "./pages/TrendingBooks";
 import { Box } from "@mui/material";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("trending");
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case "trending":
-        return <TrendingBooks />;
-      case "browse":
-        return <BrowseBooks />;
-      case "random":
-        return <RandomBooks />;
-      case "about":
-        return <About />;
-      default:
-        return <TrendingBooks />;
-    }
-  };
-
   return (
     <ThemeContextProvider>
-      <Box
-        sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
-      >
-        <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
-        <Box sx={{ flexGrow: 1 }}>{renderPage()}</Box>
-      </Box>
+      <Router>
+        <Box
+          sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+        >
+          <Navbar />
+          <Box sx={{ flexGrow: 1, p: 2 }}>
+            <Routes>
+              <Route path="/" element={<TrendingBooks />} />
+              <Route path="/trending" element={<TrendingBooks />} />
+              <Route path="/browse" element={<BrowseBooks />} />
+              <Route path="/random" element={<RandomBooks />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </Box>
+        </Box>
+      </Router>
     </ThemeContextProvider>
   );
 }

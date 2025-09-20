@@ -85,7 +85,7 @@ export default function RandomBooks() {
               </Grid>
             ))
           : books.map((book, idx) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={book.key || idx}>
+              <Grid item xs={12} sm={6} md={4} lg={2} key={book.key || idx}>
                 <BookCard book={book} onClick={handleBookClick} />
               </Grid>
             ))}
