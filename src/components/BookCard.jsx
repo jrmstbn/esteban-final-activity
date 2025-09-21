@@ -19,41 +19,38 @@ export default function BookCard({
   rank = null,
   highlightSubject,
 }) {
-  const rating = useMemo(() => Math.random() * 5, [book.key]);
+  const rating = useMemo(() => Math.random() * 5, []);
+
   const coverUrl = api.getCoverUrl(book.cover_i || book.cover_id);
 
-  // Priority subjects from RandomBooks component
-  const prioritySubjects = [
-    "fiction",
-    "science",
-    "history",
-    "mystery",
-    "romance",
-    "fantasy",
-    "biography",
-    "adventure",
-    "thriller",
-    "comedy",
-    "drama",
-    "poetry",
-  ];
-
-  const rawSubjects = book.subject || book.subject_facet || [];
-
-  // Sort subjects with priority logic
   const subjects = useMemo(() => {
+    const prioritySubjects = [
+      "fiction",
+      "science",
+      "history",
+      "mystery",
+      "romance",
+      "fantasy",
+      "biography",
+      "adventure",
+      "thriller",
+      "comedy",
+      "drama",
+      "poetry",
+    ];
+
+    const rawSubjects = book.subject || book.subject_facet || [];
+
     return [...rawSubjects].sort((a, b) => {
       const aLower = a.toLowerCase();
       const bLower = b.toLowerCase();
 
-      // First priority: exact match with highlightSubject
       if (highlightSubject) {
         const highlightLower = highlightSubject.toLowerCase();
         if (aLower === highlightLower && bLower !== highlightLower) return -1;
         if (bLower === highlightLower && aLower !== highlightLower) return 1;
       }
 
-      // Second priority: subjects from the priority list
       const aInPriority = prioritySubjects.some(
         (ps) => aLower.includes(ps) || ps.includes(aLower)
       );
@@ -64,10 +61,9 @@ export default function BookCard({
       if (aInPriority && !bInPriority) return -1;
       if (bInPriority && !aInPriority) return 1;
 
-      // If both or neither are in priority, maintain original order
       return 0;
     });
-  }, [rawSubjects, highlightSubject, prioritySubjects]);
+  }, [book.subject, book.subject_facet, highlightSubject]);
 
   return (
     <Grow in={true} timeout={500}>
