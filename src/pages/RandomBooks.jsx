@@ -58,10 +58,11 @@ export default function RandomBooks() {
     <Container maxWidth="xl" sx={{ py: 4 }}>
       <Box sx={{ textAlign: "center", mb: 6 }}>
         <Typography variant="h3" gutterBottom>
-          Discover Random Books
+          Random Book Discovery
         </Typography>
         <Typography variant="h6" color="text.secondary" gutterBottom>
-          Click the button to explore {subjects[currentSubjectIndex]} books!
+          Discover new {subjects[currentSubjectIndex - 1]} books with our
+          surprise selection!
         </Typography>
         <Button
           variant="contained"
@@ -86,7 +87,11 @@ export default function RandomBooks() {
             ))
           : books.map((book, idx) => (
               <Grid item xs={12} sm={6} md={4} lg={2} key={book.key || idx}>
-                <BookCard book={book} onClick={handleBookClick} />
+                <BookCard
+                  book={book}
+                  onClick={handleBookClick}
+                  highlightSubject={subjects[currentSubjectIndex]}
+                />
               </Grid>
             ))}
       </Grid>

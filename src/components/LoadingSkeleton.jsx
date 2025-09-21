@@ -5,7 +5,7 @@ export default function LoadingSkeleton() {
     <Card
       elevation={4}
       sx={{
-        width: 220,
+        width: 200,
         height: "100%",
         display: "flex",
         flexDirection: "column",

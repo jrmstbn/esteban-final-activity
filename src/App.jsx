@@ -12,10 +12,24 @@ export default function App() {
     <ThemeContextProvider>
       <Router>
         <Box
-          sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+          sx={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyItems: "center",
+            alignItems: "center",
+          }}
         >
           <Navbar />
-          <Box sx={{ flexGrow: 1, p: 2 }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              p: 8,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Routes>
               <Route path="/" element={<TrendingBooks />} />
               <Route path="/trending" element={<TrendingBooks />} />
